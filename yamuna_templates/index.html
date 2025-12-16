@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %} Index Page {%endblock%}
+
+{%block content %}
+<!-- acessing each item from the api -->
+<h1>Hello Flask</h1>
+<ul>
+    {% for item in mylist%}
+    <li>{{item}}</li>
+    {%endfor%}
+</ul>
+
+<!-- lets use conditions -->
+<ul>
+        {% for item in mylist%}
+        {% if item == 30%}
+                <li style="color:red">{{item}}</li>
+        {%else%}
+                <li style="color:black">{{item}}</li>
+        {%endif%}
+        {%endfor%}
+</ul>
+
+<!-- in short form -->
+    <ol>
+    {% for item in mylist%}
+    <li {% if item == 30%} style ="color:red" {%endif%}>{{item}}</li>
+        {%endfor%}
+    </ol>
+<!--  pass function nae created in .py file goto other.html page -->
+    <a href="{{url_for("otherpage")}}">other</a>
+
+{%endblock%}

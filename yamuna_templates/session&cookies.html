@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %} Session Page {%endblock%}
+
+{%block content %}
+<link rel="stylesheet" href="./css/style.css"/>
+<h2 style="text-align: center;">Session And Cookies in Flask <img src="./images/flask.png"/></h2>
+<div class="main">
+    <div class="session">
+        <h1>Session</h1>
+        <div>
+            <h3>{{message_session}}</h3>
+        </div>
+     
+        <a href="{{url_for("set_session")}}">Add data to session</a><br>
+        <a href="{{url_for("get_session_data")}}">Get data from session</a><br>
+        <a href="{{url_for("clear_session")}}">Clear session data</a><br>
+        <a href="{{url_for("update_session")}}">Update session data</a><br>
+    </div>
+    <div class="cookie">
+        <h1>Cookies</h1>
+        <div>
+        <h3>{{message_cookie}}</h3>
+        </div>
+        <a href="{{url_for("add_cookies")}}">Add Cookies</a><br>
+        <a href="{{url_for("get_cookies")}}">Get Cookies</a><br>
+        <a href="{{url_for("clear_cookies")}}">Clear Cookies</a><br>
+        <a href="{{url_for("update_cookies")}}">Update Cookie</a><br>
+    </div>
+    
+</div>
+{%endblock%}

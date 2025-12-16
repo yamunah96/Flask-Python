@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %} Message Flash {%endblock%}
+
+{%block content %}
+    <link rel="stylesheet" href="./css/style.css"/>
+    <h2 style="text-align: center;"> Message Flash in Flask <img src="./images/flask.png"/></h2>
+    <a href="{{url_for("login_flash")}}"  > 
+        <h2 style="text-align: center; font-size: 30px;color:blue;">Go To Login Page</h2>
+    </a>
+{%endblock%}

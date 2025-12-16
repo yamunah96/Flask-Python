@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title%} Default Value {%endblock%}</title>
+    <link rel="stylesheet" href="./css/style.css"/>
+</head>
+<body>
+    <p style="color: red; text-align: center;">This will be comman text Haa Haaa 😂</p>
+    {% block content %} 
+
+    {% with messages = get_flashed_message%}
+        {% if messages %}
+            <ul>
+                {% for mesg in messages%}
+                <li>{{mesg}}</li>
+                {%endfor%}
+            </ul>
+        {% endif %}
+    {% endwith %}
+    
+    {%endblock%}
+
+
+</body>
+</html>

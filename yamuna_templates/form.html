@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %} From Page {%endblock%}
+{% block content %}
+    <div class="calculate">
+        <h1>Calculate average marks</h1>
+        <form action="{{ url_for('calculate')}}" method="post">
+             <input type="text" name="maths"  placeholder="Enter Math Mark" required="required">
+             <input type="text" name="science"  placeholder="Enter Scinece Mark" required="required">
+             <input type="text" name="history"  placeholder="Enter History Mark" required="required">
+             <button type="submit" class="btn btn-primary btn-block btn-large">Calculate</button>
+            <h2>The Average marks is {{result}} </h2> 
+        </form>
+        
+        <br><br>
+    </div>
+{% endblock %}
+</body>
+</html>
