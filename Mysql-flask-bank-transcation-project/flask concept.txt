@@ -1,0 +1,269 @@
+FLASK CORE CONCEPTS USED IN THIS PROJECT
+======================================
+
+1. redirect()
+--------------
+redirect() is used to send the user from one route to another route.
+It helps control navigation flow after actions like login, logout,
+signup, or account deactivation.
+
+Example use:
+- Redirect user to dashboard after login
+- Redirect user to login page after logout
+
+Importance:
+- Improves user experience
+- Prevents reloading sensitive pages
+- Ensures proper application flow
+
+
+2. url_for()
+-------------
+url_for() dynamically generates URLs for Flask routes using function names.
+It avoids hardcoding URLs.
+
+Example:
+redirect(url_for("SignIn"))
+
+Importance:
+- Prevents broken links
+- Makes code maintainable
+- Automatically updates URLs if route names change
+
+
+3. request
+-----------
+request is used to access incoming HTTP request data such as form inputs,
+query parameters, and request methods.
+
+Used for:
+- Reading form data (username, password, amount)
+- Checking request method (GET or POST)
+
+Importance:
+- Enables user input handling
+- Essential for form-based applications
+
+
+4. Password Hashing (generate_password_hash, check_password_hash)
+------------------------------------------------------------------
+Password hashing converts a password into a secure, irreversible format.
+
+Functions used:
+- generate_password_hash(): stores hashed password
+- check_password_hash(): verifies user password
+
+Importance:
+- Protects user passwords
+- Prevents password theft even if database is compromised
+- Industry-standard security practice
+
+
+5. LoginManager
+----------------
+LoginManager is a Flask-Login component that manages user authentication.
+
+Responsibilities:
+- Tracks logged-in users
+- Protects routes using @login_required
+- Redirects unauthenticated users to login page
+
+Importance:
+- Central authentication control
+- Secure session handling
+- Simplifies login/logout logic
+
+
+6. UserMixin
+-------------
+UserMixin provides default implementations required by Flask-Login.
+
+It adds:
+- is_authenticated
+- is_active
+- is_anonymous
+- get_id()
+
+Importance:
+- Reduces boilerplate code
+- Makes custom User class compatible with Flask-Login
+
+
+7. @login_required
+-------------------
+@login_required restricts access to certain routes.
+Only authenticated users can access those routes.
+
+Used for:
+- Dashboard
+- Logout
+- Deactivate account
+
+Importance:
+- Prevents unauthorized access
+- Protects sensitive data
+
+
+8. session
+-----------
+session is used to store user-specific data on the server.
+
+Used in this project to:
+- Store logged-in username
+- Maintain user state
+
+Importance:
+- Maintains login state
+- Improves performance
+- Enhances user experience
+
+
+9. Database Status Column (status)
+----------------------------------
+The status column controls whether a user account is active or inactive.
+
+Values:
+- 1 → Active account
+- 0 → Deactivated account
+
+Importance:
+- Implements soft delete
+- Prevents data loss
+- Allows account reactivation
+- Used as a security filter during login
+
+
+10. Soft Deactivation
+----------------------
+Instead of deleting user data, the account is deactivated by setting status = 0.
+
+Importance:
+- Data integrity
+- Audit tracking
+- Professional banking-system design
+
+
+11. Flask App Structure
+-----------------------
+The project uses a modular structure:
+- app.py → routes & flow control
+- bank.py → transaction logic
+- user.py → authentication model
+- database.py → DB operations
+
+Importance:
+- Clean architecture
+- Easy maintenance
+- Scalable design
+12. load_user (User Loader)
+----------------------------
+load_user is a callback function required by Flask-Login.
+It tells Flask-Login how to load a user from the database
+using the stored user ID.
+
+Syntax:
+@login_manager.user_loader
+def load_user(user_id):
+    return User(user_id)
+
+Used for:
+- Restoring logged-in user from session
+- Maintaining login state across requests
+
+Importance:
+- Mandatory for Flask-Login
+- Enables persistent login
+- Without this, @login_required will not work
+
+
+13. User Class
+---------------
+The User class represents the logged-in user.
+It is used by Flask-Login to track authentication state.
+
+Responsibilities:
+- Stores user identity (username)
+- Acts as bridge between session and database
+
+Importance:
+- Required for authentication
+- Central user representation
+
+14. Authentication
+-------------------
+Authentication is the process of verifying user identity.
+
+Example:
+- Checking username and password during login
+
+In this project:
+- Passwords are verified using password hashing
+- Only valid users can log in
+
+Importance:
+- Confirms who the user is
+- First layer of security
+
+
+15. Authorization
+------------------
+Authorization determines what an authenticated user is allowed to do.
+
+Example:
+- Only logged-in users can access dashboard
+- Only active users (status = 1) can log in
+
+In this project:
+- @login_required restricts route access
+- status column controls account permissions
+
+Importance:
+- Prevents unauthorized access
+- Controls user privileges
+- Second layer of security
+
+
+16. Authentication vs Authorization
+-----------------------------------
+Authentication → Who the user is  
+Authorization → What the user can access  
+
+Both are required for secure applications.
+
+
+17. Flask-Login Session Handling
+--------------------------------
+Flask-Login manages user sessions securely.
+It stores user ID in the session and reloads user
+using load_user on every request.
+
+Importance:
+- Automatic session handling
+- Secure login persistence
+- Cleaner code
+
+
+18. Why Flask-Login is Used Instead of Manual Sessions
+-------------------------------------------------------
+Flask-Login provides:
+- Secure session management
+- Route protection
+- Built-in authentication helpers
+
+Compared to manual sessions:
+- Less error-prone
+- More secure
+- Industry-standard approach
+
+
+19. Security Design Used in This Project
+-----------------------------------------
+- Password hashing instead of plain text
+- Soft account deactivation using status
+- Route protection with @login_required
+- Session cleanup on logout and deactivation
+
+Importance:
+- Protects user data
+- Follows real-world security practices
+- Suitable for banking-type applications
