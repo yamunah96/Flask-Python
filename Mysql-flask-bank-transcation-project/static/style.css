@@ -1,0 +1,54 @@
+
+/* Center everything on the page */
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: serif;
+    background-color: rgb(210, 194, 174);
+}
+
+/* Login box */
+.login-container {
+    text-align: center;
+    width: 300px;
+   
+}
+
+/* Stack form elements */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-left: 20px;
+  
+}
+
+/* Inputs */
+input {
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 10px;
+    border: none;
+}
+
+/* Button */
+button {
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 10px;
+    border: none;
+}
+button:hover{
+    background-color:rgb(160, 204, 160)
+}
+
+/* Link */
+a {
+    display: block;
+    margin-top: 12px;
+    text-decoration: none;
+}

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<h2>Sign Up</h2>
+<form method="POST">
+    <input name="username" placeholder="Username" required>
+    <input name="password" type="password" placeholder="Password" required>
+    <input name="name" placeholder="Full Name">
+    <input name="age"  placeholder="Age">
+    <input name="city" placeholder="City">
+    <button type="submit">Register</button>
+</form>

@@ -1,0 +1,20 @@
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<h2>Welcome, {{ username }}!</h2>
+<h3>Balance: ${{ balance }}</h3>
+
+<form method="POST">
+    <input name="amount"  placeholder="Amount"> 
+    <button name="action" value="deposit">Deposit</button>
+    <button name="action" value="withdraw">Withdraw</button>
+    <a href="/logout">Logout</a>
+
+    <a href="/deactivate">Deactivate account</a>
+</form>
+</body>
+</html>
